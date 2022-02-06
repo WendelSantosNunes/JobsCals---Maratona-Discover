@@ -2,13 +2,19 @@ const express = require('express')
 const server = express()
 const routes = require('./routes')
 
-// Adicionar um template
+// Adicionar um template engine
 server.set('view engine', 'ejs')
 
+// server.use adicionar configurações dentro do express
+
+// Habilitando o uso de arquivo estáticos
 server.use(express.static('public'))
+
+// Libera o body do req de um formulário
+server.use(express.urlencoded({ extended: true }))
 
 // routes
 server.use(routes)
 
 // Criando o servidor
-server.listen(3001, () => console.log('rodando'))
+server.listen(3000, () => console.log('rodando'))
